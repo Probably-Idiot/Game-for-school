@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b1x3l7srgtbn0"
+path="res://.godot/imported/Flashlight.obj-808140a1f2f3ec88b7e3d2a43a399edf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Flashlight.obj-808140a1f2f3ec88b7e3d2a43a399edf.mesh"]
+
+source_file="res://Assets/Ultimate Gun Pack by Quaternius/OBJ/Accessories/Flashlight.obj"
+dest_files=["res://.godot/imported/Flashlight.obj-808140a1f2f3ec88b7e3d2a43a399edf.mesh", "res://.godot/imported/Flashlight.obj-808140a1f2f3ec88b7e3d2a43a399edf.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
