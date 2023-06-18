@@ -1,0 +1,14 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+uid="uid://dxo4jclcjv6wx"
+path="res://.godot/imported/alpha-tex.map-13f0e49db4f83a4b08653957b980edd5.tres"
+
+[deps]
+
+source_file="res://Assets/maps/alpha-tex.map"
+dest_files=["res://.godot/imported/alpha-tex.map-13f0e49db4f83a4b08653957b980edd5.tres"]
+
+[params]
+
