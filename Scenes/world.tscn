@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://f2gw5ee5rfen"]
+[gd_scene load_steps=6 format=3 uid="uid://f2gw5ee5rfen"]
 
+[ext_resource type="Script" path="res://Scenes/world.gd" id="1_nucva"]
 [ext_resource type="PackedScene" uid="uid://bdr0gf4ruuvs6" path="res://Scenes/environment.tscn" id="2_fc0yb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_76q3h"]
@@ -15,6 +16,7 @@ sky = SubResource("Sky_hr5bn")
 tonemap_mode = 2
 
 [node name="world" type="Node"]
+script = ExtResource("1_nucva")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.434748, 0.246971, 0, 0.493942, 0.869495, -0.5, 0.753005, -0.427766, 0, 0, 0)
@@ -29,25 +31,49 @@ environment = SubResource("Environment_liino")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 308.0
+offset_top = 213.0
+offset_right = -308.0
+offset_bottom = -213.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
 layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "MainMenu
+text = "Main Menu
 "
+horizontal_alignment = 1
 
 [node name="HostBtn" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+text = "Host game"
 
 [node name="JoinBtn" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+text = "Join game"
 
 [node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
+placeholder_text = "Enter join code here"
+alignment = 1
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/player.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostBtn" to="." method="_on_host_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinBtn" to="." method="_on_join_btn_pressed"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cpfmwwoeaa6a3"]
+[gd_scene load_steps=18 format=3 uid="uid://cpfmwwoeaa6a3"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_fp3vu"]
 [ext_resource type="PackedScene" uid="uid://bpylqyi4iht75" path="res://Assets/Ultimate Gun Pack by Quaternius1/FBX/Pistol_5.fbx" id="2_j3sva"]
 [ext_resource type="Texture2D" uid="uid://dlv8mdc5u1fqo" path="res://Assets/kenney_particle_pack/star_06.png" id="3_wr8cb"]
+[ext_resource type="Texture2D" uid="uid://btnfvhfi3exst" path="res://Assets/kenney_particle_pack/circle_03.png" id="4_5mfki"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8loa7"]
 
@@ -146,7 +147,23 @@ _data = {
 "shoot": SubResource("Animation_gf7mv")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_0fcsw"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("Camera3D:position")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("Camera3D:rotation")
+properties/3/spawn = true
+properties/3/sync = true
+
 [node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
 script = ExtResource("1_fp3vu")
 
 [node name="Body" type="MeshInstance3D" parent="."]
@@ -173,8 +190,30 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_40ab1")
 draw_pass_1 = SubResource("PlaneMesh_reeyn")
 
+[node name="TextureRect" type="TextureRect" parent="Camera3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.03, 0.03)
+pivot_offset = Vector2(580, 323)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource("4_5mfki")
+stretch_mode = 5
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -50)
+collision_mask = 2
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_default_blend_time = 0.05
 libraries = {
 "": SubResource("AnimationLibrary_dink5")
 }
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_0fcsw")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
