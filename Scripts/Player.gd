@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal health_changed(health_value)
+
 @onready var camera = $Camera3D
 @onready var anim_player = $AnimationPlayer
 @onready var muzzle_flash = $Camera3D/Pistol_5/MuzzleFlash
@@ -37,7 +39,7 @@ func _unhandled_input(event):
 		play_shoot_effects.rpc()
 		if raycast.is_colliding():
 			var hit_player = raycast.get_collider()
-			hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
+			hit_player.recieve_damage.rpc_id(hit_player.get_multiplayer_authority())
 			
 		
 		
@@ -97,6 +99,7 @@ func recieve_damage():
 		health = 3
 		#position = respawn_loc
 		position = Vector3.ZERO
+	health_changed.emit(health)
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "shoot":
