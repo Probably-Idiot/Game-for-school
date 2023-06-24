@@ -22,7 +22,7 @@ func _on_host_btn_pressed():
 	
 	add_player(multiplayer.get_unique_id())
 	
-	upnp_setup()
+#	upnp_setup()
 
 func _on_join_btn_pressed():
 	main_menu.hide()
