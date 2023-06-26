@@ -26,6 +26,7 @@ func _ready():
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera.current = true
+	
 
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return

@@ -11,7 +11,7 @@
 [resource]
 script = ExtResource("3_8vw40")
 export_file = false
-trenchbroom_games_folder = "C:/Users/zadok/Documents/TrenchBroom"
+trenchbroom_games_folder = "D:/Godot Projects/Game for school/Assets"
 game_name = "School Browser FPS"
 icon = ExtResource("2_jej4n")
 fgd_files = Array[Resource]([ExtResource("1_y22p1")])
